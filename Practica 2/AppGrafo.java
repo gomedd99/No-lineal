@@ -56,36 +56,30 @@ public class AppGrafo {
     }
 
     public String recorridoProfundidad(Grafo G,int u){
-        System.out.println(u);
-        Re += " "+u;
-        System.out.println("this "+Re);
-        int nodoExistente = 0, k = 1;
-        for (int i = 1;i <= G.vertices() ;i++ ) {
-            Boolean flag = true;
-            nodoExistente = 0;
-            k = 1;
-            if (G.costo(u,i) != 0 ) {
-                for (int j = 0;j < Re.length() ;j++ ) {
-                    if(Re.codePointAt(j) != 32){
-                        nodoExistente *= k;
-                        nodoExistente += Character.getNumericValue(Re.charAt(j));
-                        j *=10;
-                    }else {
-                        System.out.println(nodoExistente + " "+i);
-                        if (nodoExistente == i) {
-                            flag = false;
-                            j = Re.length();
-                        }
-                    }
-                }
-                if (flag) {
-                    return recorridoProfundidad(G,i);
-                }
+        ArrayList<Integer> nodos = new ArrayList<>();
+        nodos.add(u);
+        int nodoactual = 0, i = 0;
+        Boolean flag;
+        while (i < nodos.size()) {
+            nodoactual = nodos.get(i);
+            for (int j = 1;j <= G.vertices() ; j++ ) {
+                flag = true;
+                 if (G.costo(nodoactual,j) != 0) {
+                     for (int k = 0;k < nodos.size() ; k++ ){
+                         if (j == nodos.get(k)){
+                             flag = false;
+                         }
+                     }
+                     if (flag){
+                         nodos.add(j);
+                         nodoactual = j;
+                         j = 0;
+                     }
+                 }
             }
-
+            i++;
         }
-        return Re;
-
+        return nodos.toString();
     }
 
 
