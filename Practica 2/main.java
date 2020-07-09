@@ -1,6 +1,6 @@
 public class main {
     public static void main(String[] args) {
-        System.out.println("Hello world");
-        System.out.println("Good bye");
+        AppGrafo g = new AppGrafo("G1.txt");
+        System.out.println(g.recorridoAmplitud(g.getG(),1));
     }
 }
