@@ -33,8 +33,8 @@ public class Grafo {
         for (int i = 0; i < n; i++) {
             costo[i][i] = 0;
             for (int j = i+1; j < n; j++) {
-                costo[i][j] = 0;
-                costo[j][i] = 0;
+                costo[i][j] = INF;
+                costo[j][i] = INF;
             }
         }
     }
